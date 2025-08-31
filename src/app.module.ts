@@ -5,6 +5,7 @@ import { join } from 'path'; // Import necessário
 import { UserModule } from './modules/user/user.module';
 import { AppController } from './modules/app.controller';
 import { DB_SQLITE } from './config/const';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { DB_SQLITE } from './config/const';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'html'),
     }),
+    AuthModule,
     UserModule,
   ],
   controllers: [AppController],
