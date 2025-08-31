@@ -1,0 +1,45 @@
+// Example requests to test the Product SKU service.
+// Use the endpoints below to list, create, retrieve, update, and delete products.
+
+GET http://localhost:3000/ HTTP/1.1
+
+###
+
+POST http://localhost:3000/auth HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "123",
+    "password": "123",
+}
+
+###
+
+GET http://localhost:3000/products/68a25d58f9c69b9c55375a2b HTTP/1.1
+
+###
+
+PATCH  http://localhost:3000/products/68a26b11c930c173a35f4304 HTTP/1.1
+Content-Type: application/json
+
+{
+    "descricao": "Produto atualizado",
+    "descricaoComercial": "Descrição comercial atualizada",
+    "sku": "SKU127",
+    "status": "DESATIVADO"
+}
+
+###
+PATCH  http://localhost:3000/products/68a25d58f9c69b9c55375a2b HTTP/1.1
+Content-Type: application/json
+
+{
+    "descricao": "Produto atualizado222",
+    "descricaoComercial": "Descrição comercial atualizada222",
+    "sku": "SKU172",
+    "status": "ATIVO"
+}
+
+###
+
+DELETE http://localhost:3000/products/68a25fde42c1ad3dc6af7cb5 HTTP/1.1
