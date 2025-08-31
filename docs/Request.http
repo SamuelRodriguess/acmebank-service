@@ -11,3 +11,12 @@ Content-Type: application/json
     "username": "user7",
     "password": "C0deC@demy_Rocks!"
 }
+
+###
+
+POST http://localhost:3000/home HTTP/1.1
+Content-Type: application/json
+
+{
+   
+}

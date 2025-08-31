@@ -1,20 +1,23 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { AppModule } from './app.module';
-import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
+import session from 'express-session';
+import { createClient } from 'redis';
+const { RedisStore } = require('connect-redis');
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.useGlobalPipes(
-    /*The ValidationPipe globally validates all incoming requests based on your DTO classes.*/
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
@@ -22,20 +25,34 @@ async function bootstrap() {
     }),
   );
 
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.useStaticAssets(join(resolve(__dirname, '../'), 'public'));
+
+  app.setBaseViewsDir(join(resolve(__dirname, '../'), 'views'));
   app.setViewEngine('ejs');
 
   app.use(helmet());
   app.use(cookieParser());
 
+  const redisClient = createClient({
+    url: process.env.REDIS_URL,
+  });
+  await redisClient.connect();
+
+  const redisStore = new RedisStore({
+    client: redisClient,
+    prefix: ':',
+  });
+
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || 'secret',
+      store: redisStore,
+      secret: process.env.SESSION_SECRET || 'seusegredo',
       resave: false,
       saveUninitialized: false,
+      cookie: { secure: false, httpOnly: true },
     }),
   );
+
   await app.listen(process.env.PORT || 3000);
   console.log(`Server running at http://localhost:${process.env.PORT || 3000}`);
 }
