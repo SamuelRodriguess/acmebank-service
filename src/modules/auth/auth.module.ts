@@ -8,7 +8,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from '../user/user.module';
 import { AuthService } from './auth.service';
-import { JwtStrategy } from './JwtStrategy';
+import { JwtStrategy } from './guard/JwtStrategy';
 import { AuthController } from './auth.controller';
 import { loginLimiter } from '../../common/rateLimiter/limiter';
 
