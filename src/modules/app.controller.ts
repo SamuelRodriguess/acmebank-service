@@ -6,6 +6,6 @@ import path from 'path';
 export class AppController {
   @Get()
   root(@Req() req: express.Request, @Res() res: express.Response) {
-    res.sendFile(path.join(__dirname + '../../html/login.html'));
+    res.sendFile(path.join(__dirname + '../../../html/login.html'));
   }
 }

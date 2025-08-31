@@ -43,7 +43,9 @@ export class UserController {
       req.session.balance = user.balance;
       req.session.file_history = user.file_history;
       req.session.account_no = user.account_no;
-      return res.redirect('/home');
+
+      /*       return res.redirect('/home');
+       */ return res.send(req.session);
     }
     return res.send('Incorrect Username and/or Password!');
   }
