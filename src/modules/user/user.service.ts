@@ -1,9 +1,10 @@
+import bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import bcrypt from 'bcrypt';
+import { generateAccountNo } from 'src/utils/generateAccount';
 
 @Injectable()
 export class UserService {
@@ -18,10 +19,13 @@ export class UserService {
       createUserDto.password,
       saltRounds,
     );
-
+    const balanceInitial = 0;
     const user = this.usersRepository.create({
       username: createUserDto.username,
       password: hashedPassword,
+      balance: balanceInitial,
+      file_history: 'seu historico',
+      account_no: generateAccountNo(),
     });
 
     return this.usersRepository.save(user);
