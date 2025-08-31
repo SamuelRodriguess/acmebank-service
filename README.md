@@ -12,7 +12,7 @@ This project is a backend service built with NestJS that manages core banking fu
 - SQL transactions to ensure atomic money transfers (via TypeORM or Prisma)
 
 ## Prerequisites
-- Node.js (v18 or higher recommended)
+- Node.js (v22 or higher recommended)
 - npm or yarn
 - SQLite3 database
 - NestJS framework
