@@ -30,12 +30,15 @@ This project is a backend service built with NestJS that manages core banking fu
 2. Visit `http://localhost:3000` in your browser.
 3. Register or log in, then use the public forum, initiate transfers, access the ledger, or download files.
 
-## Important Endpoints
-- POST `/auth` - user login
-- POST `/transfer` - transfer money between accounts (uses SQL transactions)
-- GET `/public_ledger` - view ledger entries with optional query parameter to filter by account
-- POST `/public_forum` - post comments to the forum (with validation)
-- POST `/download` - download files securely (validated and sanitized)
+## 📚 API Endpoints
+
+| Method | Endpoint           | Description                                        |
+|--------|--------------------|--------------------------------------------------|
+| POST   | `/auth`            | user login                                       |
+| POST   | `/transfer`        | transfer money between accounts (uses SQL transactions) |
+| GET    | `/public_ledger`   | view ledger entries with optional query parameter to filter by account |
+| POST   | `/public_forum`    | post comments to the forum (with validation)     |
+| POST   | `/download`        | download files securely (validated and sanitized)|
 
 ## Validation and Security
 - All user inputs are validated and sanitized using class-validator decorators and applied globally via NestJS ValidationPipe.
