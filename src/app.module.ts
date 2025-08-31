@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path'; // Import necessário
-import { UserModule } from './user/user.module';
-import { AppController } from './app.controller';
+import { UserModule } from './modules/user/user.module';
+import { AppController } from './modules/app.controller';
+import { DB_SQLITE } from './config/const';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: './db/bank_sample.sqlite',
+      database: DB_SQLITE,
       autoLoadEntities: true,
       synchronize: true,
     }),

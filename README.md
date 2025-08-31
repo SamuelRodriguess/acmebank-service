@@ -1,97 +1,91 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# <img src="https://nestjs.com/img/logo-small.svg" alt="Nest Logo" width="25" /> Acme Bank Service
 
 ## Description
+This project is a backend service built with NestJS that manages core banking functionalities including money transfers, user account management, a public forum, and user comments. The application uses SQLite3 for lightweight database management, providing persistence for user data, transactions, and forum posts. It incorporates transactional integrity for secure money transfers.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+- User session management with login validation (using NestJS guards/middleware)
+- Public forum where authenticated users can post comments
+- Public ledger view with optional filtering by account
+- Secure file download with input validation
+- Input validation using NestJS pipes and class-validator for security and data integrity
+- SQL transactions to ensure atomic money transfers (via TypeORM or Prisma)
 
-## Project setup
+## Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or yarn
+- SQLite3 database
+- NestJS framework
 
-```bash
-$ yarn install
-```
+## Installation
+1. Clone the repository:
+   ```git clone https://github.com/SamuelRodriguess/nestjs-acme-bank-service```
 
-## Compile and run the project
+2. Install dependencies:
+   ```yarn install```
 
-```bash
-# development
-$ yarn run start
+## Usage
+1. Start the server:
+   ```yarn start```
+2. Visit `http://localhost:3000` in your browser.
+3. Register or log in, then use the public forum, initiate transfers, access the ledger, or download files.
 
-# watch mode
-$ yarn run start:dev
+## Important Endpoints
+- POST `/auth` - user login
+- POST `/transfer` - transfer money between accounts (uses SQL transactions)
+- GET `/public_ledger` - view ledger entries with optional query parameter to filter by account
+- POST `/public_forum` - post comments to the forum (with validation)
+- POST `/download` - download files securely (validated and sanitized)
 
-# production mode
-$ yarn run start:prod
-```
+## Validation and Security
+- All user inputs are validated and sanitized using class-validator decorators and applied globally via NestJS ValidationPipe.
+- Validation is integrated into DTOs (Data Transfer Objects) to ensure data integrity and security.
+- User sessions are checked at protected routes using NestJS Guards to prevent unauthorized access.
+- Sensitive operations are protected with guards and additional security mechanisms.
+- File accesses are sanitized to prevent path traversal and other injection attacks.
 
-## Run tests
 
-```bash
-# unit tests
-$ yarn run test
 
-# e2e tests
-$ yarn run test:e2e
+## Project Structure
 
-# test coverage
-$ yarn run test:cov
-```
+Project Structure Overview  
+This project follows a modular and organized structure to keep the code maintainable and scalable, following best practices recommended for NestJS applications.
 
-## Deployment
+- `src/main.ts` - The entry point of the application that bootstraps the NestJS app.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- `src/app.module.ts` - The root module tying together all feature modules and global providers.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- `src/modules/` - Contains feature modules divided by domain or capability. Each module includes its own controllers, services, DTOs, entities, and related files. Examples: `users/`, `auth/`, `ledger/`.
+   - `controllers/` - Contains controller classes that define the routes and handle incoming HTTP requests for that domain.
+   - `services/` - Contains service (provider) classes where the business logic and interaction with data layers reside.
+   - `dtos/-` Contains Data Transfer Objects which define the shape and validation rules for data sent over the network.
+   - `entities/` - Contains database entities or models corresponding to the domain data.
 
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
+- `src/common/` - Contains globally reusable components such as pipes, guards, interceptors, filters, and decorators.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- `src/config/` - Configuration files and setup such as environment variables, middleware configuration, database connection setup, and security settings.
 
-## Resources
+- `src/db/` or inside individual modules - Contains database entities, repositories, and migration files. TypeORM or Prisma files typically reside here.
 
-Check out a few resources that may come in handy when working with NestJS:
+- `src/middleware/` - Custom middleware functions for rate limiting, authentication, error handling, etc.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- `src/public/` - Static assets like CSS, client-side JavaScript, images served using `ServeStaticModule`.
+
+- `src/views/` - Holds view templates (e.g., EJS) if server-side rendering or email templates are used.
+
+## App
+  <table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/f2af4c98-7adf-42d1-a334-e8538f91d0f1" width="500"></td>
+    <td><img width="500"  alt="image" src="https://github.com/user-attachments/assets/989fff03-c1a0-4c90-ad13-4b5ba7821fd0" /></td></tr>
+    <tr> <td><img width="500" alt="image" src="https://github.com/user-attachments/assets/f4f351ec-5a33-43fa-9ec2-507eafba006d" /></td>
+    <td><img  width="500"alt="image" src="https://github.com/user-attachments/assets/81a5b034-b351-42d3-b781-1a27ed1ca584" /></td></tr>
+</tr>
+</table>
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 

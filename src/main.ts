@@ -7,14 +7,27 @@ import { AppModule } from './app.module';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useGlobalPipes(
+    /*The ValidationPipe globally validates all incoming requests based on your DTO classes.*/
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('ejs');
+
   app.use(helmet());
   app.use(cookieParser());
+
   app.use(
     session({
       secret: process.env.SESSION_SECRET || 'secret',

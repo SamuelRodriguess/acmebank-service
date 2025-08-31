@@ -3,7 +3,7 @@ import { UsersService } from './user.service';
 import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { loginLimiter } from 'src/middleware/config/limiter';
+import { loginLimiter } from 'src/common/rateLimiter/limiter';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
