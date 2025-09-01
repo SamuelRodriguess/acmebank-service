@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
@@ -18,7 +17,6 @@ export class AuthService {
     username: string,
     pass: string,
     req: any,
-    res: any,
   ): Promise<UserWithoutPassword> {
     const userData = await this.userService.findByUsername(username);
 
@@ -37,8 +35,8 @@ export class AuthService {
     req.session.balance = userData.balance;
     req.session.file_history = userData.file_history;
     req.session.account_no = userData.account_no;
-
-    return res.redirect('/home');
+    const { password, ...result } = userData;
+    return result;
   }
 
   login(user: IPayload) {
