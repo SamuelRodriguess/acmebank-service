@@ -34,7 +34,7 @@ This project is a backend service built with NestJS that manages core banking fu
 
 | Method | Endpoint           | Description                                        |
 |--------|--------------------|--------------------------------------------------|
-| POST   | `/login/auth`            | user login                                       |
+| POST   | `/auth/login`            | user login                                       |
 | POST   | `/transfer`        | transfer money between accounts (uses SQL transactions) |
 | GET    | `/public_ledger`   | view ledger entries with optional query parameter to filter by account |
 | POST   | `/public_forum`    | post comments to the forum (with validation)     |
