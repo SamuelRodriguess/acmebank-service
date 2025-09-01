@@ -5,7 +5,7 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join, resolve } from 'path';
+import path, { join } from 'path';
 import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -25,10 +25,11 @@ async function bootstrap() {
     }),
   );
 
-  app.useStaticAssets(join(resolve(__dirname, '../'), 'public'));
+  app.useStaticAssets(join(__dirname, '..', 'public'));
 
-  app.setBaseViewsDir(join(resolve(__dirname, '../'), 'views'));
-  app.setViewEngine('ejs');
+  app.setBaseViewsDir(join(path.resolve(__dirname, '../'), 'views'));
+
+  app.set('view engine', 'ejs');
 
   app.use(helmet());
   app.use(cookieParser());

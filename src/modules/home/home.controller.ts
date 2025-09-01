@@ -1,8 +1,8 @@
 import { Controller, Get, Render } from '@nestjs/common';
 
-@Controller('home')
+@Controller()
 export class HomeController {
-  @Get()
+  @Get('home')
   @Render('index')
   getHello(): object {
     return { title: 'Title', subtitle: 'Subtitle' };
