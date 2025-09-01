@@ -34,7 +34,7 @@ This project is a backend service built with NestJS that manages core banking fu
 
 | Method | Endpoint           | Description                                        |
 |--------|--------------------|--------------------------------------------------|
-| POST   | `/auth`            | user login                                       |
+| POST   | `/login/auth`            | user login                                       |
 | POST   | `/transfer`        | transfer money between accounts (uses SQL transactions) |
 | GET    | `/public_ledger`   | view ledger entries with optional query parameter to filter by account |
 | POST   | `/public_forum`    | post comments to the forum (with validation)     |
@@ -46,8 +46,6 @@ This project is a backend service built with NestJS that manages core banking fu
 - User sessions are checked at protected routes using NestJS Guards to prevent unauthorized access.
 - Sensitive operations are protected with guards and additional security mechanisms.
 - File accesses are sanitized to prevent path traversal and other injection attacks.
-
-
 
 ## Project Structure
 
@@ -75,16 +73,6 @@ This project follows a modular and organized structure to keep the code maintain
 - `src/public/` - Static assets like CSS, client-side JavaScript, images served using `ServeStaticModule`.
 
 - `src/views/` - Holds view templates (e.g., EJS) if server-side rendering or email templates are used.
-
-## App
-  <table>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/f2af4c98-7adf-42d1-a334-e8538f91d0f1" width="500"></td>
-    <td><img width="500"  alt="image" src="https://github.com/user-attachments/assets/989fff03-c1a0-4c90-ad13-4b5ba7821fd0" /></td></tr>
-    <tr> <td><img width="500" alt="image" src="https://github.com/user-attachments/assets/f4f351ec-5a33-43fa-9ec2-507eafba006d" /></td>
-    <td><img  width="500"alt="image" src="https://github.com/user-attachments/assets/81a5b034-b351-42d3-b781-1a27ed1ca584" /></td></tr>
-</tr>
-</table>
 
 ## Support
 
