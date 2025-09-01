@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import path, { join } from 'path';
 import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -25,12 +24,6 @@ async function bootstrap() {
     }),
   );
 
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-
-  app.setBaseViewsDir(join(path.resolve(__dirname, '../'), 'views'));
-
-  app.set('view engine', 'ejs');
-
   app.use(helmet());
   app.use(cookieParser());
 
@@ -47,7 +40,7 @@ async function bootstrap() {
   app.use(
     session({
       store: redisStore,
-      secret: process.env.SESSION_SECRET || 'seusegredo',
+      secret: process.env.SESSION_SECRET || 'secret',
       resave: false,
       saveUninitialized: false,
       cookie: { secure: false, httpOnly: true },

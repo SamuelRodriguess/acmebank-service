@@ -2006,6 +2006,18 @@ asap@^2.0.0:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==
 
+assign-deep@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/assign-deep/-/assign-deep-1.0.1.tgz#b6d21d74e2f28bf6592e4c0c541bed6ab59c5f27"
+  integrity sha512-CSXAX79mibneEYfqLT5FEmkqR5WXF+xDRjgQQuVf6wSCXCYU8/vHttPidNar7wJ5BFmKAo8Wei0rCtzb+M/yeA==
+  dependencies:
+    assign-symbols "^2.0.2"
+
+assign-symbols@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-2.0.2.tgz#0fb9191dd9d617042746ecfc354f3a3d768a0c98"
+  integrity sha512-9sBQUQZMKFKcO/C3Bo6Rx4CQany0R0UeVcefNGRRdW2vbmaMOhV1sbmlXcQLcD56juLXbSGTBm0GGuvmrAF8pA==
+
 async@^3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.6.tgz#1b0728e14929d51b85b449b7f06e27c1145e38ce"
@@ -2794,6 +2806,13 @@ end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   integrity sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==
   dependencies:
     once "^1.4.0"
+
+engine@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/engine/-/engine-1.0.0.tgz#9da8e04c83944c126ee485630e2549aa92b2881a"
+  integrity sha512-Rv6w3o7jiqPb5h/5Mar4yPzbWoow0CsSW8otutaYpHbVonMQwHCB8EyUwQfhiKo3luQe99Nqj1JhRZ7N3BCZ3g==
+  dependencies:
+    assign-deep "^1.0.0"
 
 enhanced-resolve@^5.0.0, enhanced-resolve@^5.17.2, enhanced-resolve@^5.7.0:
   version "5.18.3"

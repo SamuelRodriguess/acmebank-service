@@ -6,7 +6,6 @@ import { UserModule } from './modules/user/user.module';
 import { AppController } from './modules/app.controller';
 import { DB_SQLITE } from './config/const';
 import { AuthModule } from './modules/auth/auth.module';
-import { HomeModule } from './modules/home/home.module';
 
 @Module({
   imports: [
@@ -21,7 +20,6 @@ import { HomeModule } from './modules/home/home.module';
     }),
     AuthModule,
     UserModule,
-    HomeModule,
   ],
   controllers: [AppController],
   providers: [],
