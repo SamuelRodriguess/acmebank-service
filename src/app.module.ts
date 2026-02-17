@@ -6,6 +6,7 @@ import { UserModule } from './modules/user/user.module';
 import { AppController } from './modules/app.controller';
 import { DB_SQLITE } from './config/const';
 import { AuthModule } from './modules/auth/auth.module';
+import { TestuserModule } from './modules/testuser/testuser.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
     AuthModule,
     UserModule,
+    TestuserModule,
   ],
   controllers: [AppController],
   providers: [],
