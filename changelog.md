@@ -8,6 +8,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
 - Management of banking services, including sending and receiving balance data.
 - APIs for forum user messages and user balance records.
