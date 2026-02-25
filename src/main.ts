@@ -11,6 +11,7 @@ import helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
 import { createClient } from 'redis';
+import passport from 'passport';
 const { RedisStore } = require('connect-redis');
 
 async function bootstrap() {
@@ -46,6 +47,9 @@ async function bootstrap() {
       cookie: { secure: false, httpOnly: true },
     }),
   );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   await app.listen(process.env.PORT || 3000);
   console.log(`Server running at http://localhost:${process.env.PORT || 3000}`);

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -13,28 +13,19 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(
-    username: string,
-    pass: string,
-    req: any,
-  ): Promise<UserWithoutPassword> {
+  async validateUser(username: string, pass: string): Promise<UserWithoutPassword | null> {
     const userData = await this.userService.findByUsername(username);
 
     if (!userData || !userData.password) {
-      throw new UnauthorizedException('Invalid username or password');
+      return null;
     }
 
     const isPasswordMatching = await bcrypt.compare(pass, userData.password);
 
     if (!isPasswordMatching) {
-      throw new UnauthorizedException('Invalid username or password');
+      return null;
     }
 
-    req.session.loggedin = true;
-    req.session.username = userData.username;
-    req.session.balance = userData.balance;
-    req.session.file_history = userData.file_history;
-    req.session.account_no = userData.account_no;
     const { password, ...result } = userData;
     return result;
   }
