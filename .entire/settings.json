@@ -1,7 +1,6 @@
 {
+  "strategy": "auto-commit",
   "enabled": true,
-  "strategy": "manual-commit",
   "log_level": "info",
-  "telemetry": true,
-  "strategy_options": {}
+  "telemetry": true
 }
