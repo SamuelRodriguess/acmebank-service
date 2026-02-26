@@ -8,8 +8,8 @@ import helmet from 'helmet';
 import { Logger, ValidationPipe } from '@nestjs/common';
 /* import session from 'express-session';
  */
-import { createClient } from 'redis';
-/* import passport from 'passport';
+/* import { createClient } from 'redis';
+ */ /* import passport from 'passport';
 import RedisStore from 'connect-redis';
  */
 async function bootstrap() {
@@ -26,7 +26,7 @@ async function bootstrap() {
   app.use(helmet());
   app.use(cookieParser());
 
-  const redisClient = createClient({
+  /*   const redisClient = createClient({
     url: process.env.REDIS_URL || 'redis://localhost:6379',
     socket: {
       reconnectStrategy: (retries) => Math.min(retries * 50, 1000),
@@ -38,7 +38,7 @@ async function bootstrap() {
   redisClient.on('connect', () => logger.log('Redis connected successfully'));
 
   await redisClient.connect().catch((err) => logger.error('Could not connect to Redis', err));
-
+ */
   /*   const redisStore = new RedisStore({
       client: redisClient,
       prefix: 'acmebank:',
