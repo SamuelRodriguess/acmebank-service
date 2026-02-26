@@ -5,7 +5,8 @@
   "branch": "feat/test-entire",
   "checkpoints_count": 0,
   "files_touched": [
-    "src/main.ts"
+    "src/main.ts",
+    "src/modules/auth/guard/JwtStrategy.ts"
   ],
   "sessions": [
     {
@@ -14,6 +15,13 @@
       "context": "/6b/c19f07a60c/0/context.md",
       "content_hash": "/6b/c19f07a60c/0/content_hash.txt",
       "prompt": "/6b/c19f07a60c/0/prompt.txt"
+    },
+    {
+      "metadata": "/6b/c19f07a60c/1/metadata.json",
+      "transcript": "/6b/c19f07a60c/1/full.jsonl",
+      "context": "/6b/c19f07a60c/1/context.md",
+      "content_hash": "/6b/c19f07a60c/1/content_hash.txt",
+      "prompt": "/6b/c19f07a60c/1/prompt.txt"
     }
   ],
   "token_usage": {

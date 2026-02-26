@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.7",
+  "checkpoint_id": "6bc19f07a60c",
+  "session_id": "525a0273-e910-4a38-a41d-c4797ba96821",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-26T22:09:03.935215057Z",
+  "branch": "feat/test-entire",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/main.ts",
+    "src/modules/auth/guard/JwtStrategy.ts"
+  ],
+  "agent": "Gemini CLI",
+  "turn_id": "c3baa0273a40",
+  "checkpoint_transcript_start": 5,
+  "transcript_lines_at_start": 5,
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-26T22:09:03.918869524Z",
+    "agent_lines": 16,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 16,
+    "agent_percentage": 100
+  }
+}
