@@ -15,10 +15,7 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(
-      createUserDto.password,
-      saltRounds,
-    );
+    const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
     const balanceInitial = 0;
     const user = this.usersRepository.create({
       username: createUserDto.username,
