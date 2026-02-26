@@ -1,0 +1,5 @@
+ajuste o redis
+
+---
+
+gemini -p "ajuste o red"
