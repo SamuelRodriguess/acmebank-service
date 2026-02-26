@@ -6,11 +6,12 @@ import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import session from 'express-session';
+/* import session from 'express-session';
+ */
 import { createClient } from 'redis';
-import passport from 'passport';
-import connectRedis from 'connect-redis';
-
+/* import passport from 'passport';
+import RedisStore from 'connect-redis';
+ */
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
@@ -38,14 +39,13 @@ async function bootstrap() {
 
   await redisClient.connect().catch((err) => logger.error('Could not connect to Redis', err));
 
-  const RedisStore = connectRedis(session);
-  const redisStore = new RedisStore({
-    client: redisClient,
-    prefix: 'acmebank:',
-    ttl: 86400, // 1 day
-  });
-
-  app.use(
+  /*   const redisStore = new RedisStore({
+      client: redisClient,
+      prefix: 'acmebank:',
+      ttl: 86400, // 1 day
+    });
+  */
+  /*   app.use(
     session({
       store: redisStore,
       secret: process.env.SESSION_SECRET || 'secret',
@@ -54,10 +54,10 @@ async function bootstrap() {
       cookie: { secure: false, httpOnly: true },
     }),
   );
-
-  app.use(passport.initialize());
+ */
+  /*   app.use(passport.initialize());
   app.use(passport.session());
-
+ */
   const port = process.env.PORT || 3000;
   await app.listen(port);
   Logger.log(`Server running at http://localhost:${port}`, 'Bootstrap');
