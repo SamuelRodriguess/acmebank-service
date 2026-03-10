@@ -29,8 +29,6 @@ import { loginLimiter } from '../../common/rateLimiter/limiter';
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(loginLimiter)
-      .forRoutes({ path: 'auth/login', method: RequestMethod.POST });
+    consumer.apply(loginLimiter).forRoutes({ path: 'auth/login', method: RequestMethod.POST });
   }
 }
