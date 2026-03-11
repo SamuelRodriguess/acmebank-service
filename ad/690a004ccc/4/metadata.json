@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.7",
+  "checkpoint_id": "ad690a004ccc",
+  "session_id": "a29e4283-7c38-419b-9b06-14ece2356e7d",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-11T02:58:14.11648784Z",
+  "branch": "feat/test-entire",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/modules/auth/auth.controller.ts",
+    "src/modules/auth/auth.service.ts",
+    "src/modules/user/tests/user.controller.spec.ts",
+    "src/modules/user/tests/user.service.spec.ts",
+    "src/modules/user/user.service.ts",
+    "src/tests/app.controller.spec.ts"
+  ],
+  "agent": "Gemini CLI",
+  "turn_id": "08574bf163c5",
+  "token_usage": {
+    "input_tokens": 77473,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 41508,
+    "output_tokens": 594,
+    "api_call_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-11T02:58:14.090756255Z",
+    "agent_lines": 62,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 62,
+    "agent_percentage": 100
+  }
+}
