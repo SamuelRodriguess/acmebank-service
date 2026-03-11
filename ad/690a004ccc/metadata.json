@@ -3,7 +3,7 @@
   "checkpoint_id": "ad690a004ccc",
   "strategy": "manual-commit",
   "branch": "feat/test-entire",
-  "checkpoints_count": 3,
+  "checkpoints_count": 4,
   "files_touched": [
     "src/modules/auth/auth.controller.ts",
     "src/modules/auth/auth.service.ts",
@@ -47,13 +47,20 @@
       "context": "/ad/690a004ccc/4/context.md",
       "content_hash": "/ad/690a004ccc/4/content_hash.txt",
       "prompt": "/ad/690a004ccc/4/prompt.txt"
+    },
+    {
+      "metadata": "/ad/690a004ccc/5/metadata.json",
+      "transcript": "/ad/690a004ccc/5/full.jsonl",
+      "context": "/ad/690a004ccc/5/context.md",
+      "content_hash": "/ad/690a004ccc/5/content_hash.txt",
+      "prompt": "/ad/690a004ccc/5/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 267367,
-    "cache_creation_tokens": 27450,
-    "cache_read_tokens": 576259,
-    "output_tokens": 7422,
-    "api_call_count": 50
+    "input_tokens": 267381,
+    "cache_creation_tokens": 36978,
+    "cache_read_tokens": 786688,
+    "output_tokens": 11631,
+    "api_call_count": 62
   }
 }
