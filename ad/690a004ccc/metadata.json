@@ -5,7 +5,12 @@
   "branch": "feat/test-entire",
   "checkpoints_count": 2,
   "files_touched": [
-    "src/modules/user/tests/user.service.spec.ts"
+    "src/modules/auth/auth.controller.ts",
+    "src/modules/auth/auth.service.ts",
+    "src/modules/user/tests/user.controller.spec.ts",
+    "src/modules/user/tests/user.service.spec.ts",
+    "src/modules/user/user.service.ts",
+    "src/tests/app.controller.spec.ts"
   ],
   "sessions": [
     {
@@ -21,13 +26,20 @@
       "context": "/ad/690a004ccc/1/context.md",
       "content_hash": "/ad/690a004ccc/1/content_hash.txt",
       "prompt": "/ad/690a004ccc/1/prompt.txt"
+    },
+    {
+      "metadata": "/ad/690a004ccc/2/metadata.json",
+      "transcript": "/ad/690a004ccc/2/full.jsonl",
+      "context": "/ad/690a004ccc/2/context.md",
+      "content_hash": "/ad/690a004ccc/2/content_hash.txt",
+      "prompt": "/ad/690a004ccc/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 20,
+    "input_tokens": 189885,
     "cache_creation_tokens": 19232,
-    "cache_read_tokens": 283572,
-    "output_tokens": 4776,
-    "api_call_count": 16
+    "cache_read_tokens": 415450,
+    "output_tokens": 5554,
+    "api_call_count": 34
   }
 }
