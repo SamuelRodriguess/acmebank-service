@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import bcrypt from 'bcrypt';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { IPayload, UserWithoutPassword } from './typings/auth';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +27,10 @@ export class AuthService {
 
     const { password, ...result } = userData;
     return result;
+  }
+
+  async newLogin(createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
   }
 
   login(user: IPayload) {

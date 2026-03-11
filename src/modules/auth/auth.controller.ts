@@ -15,6 +15,7 @@ import {
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import type { Response } from 'express';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -43,11 +44,31 @@ export class AuthController {
   }
 
   @Post('newlogin')
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async newLogin(@Body() body: any, @Res() res: Response, @Req() req: any) {
+   
+  async newLogin(
+    @Body() createUserDto: CreateUserDto,
+    @Res() res: Response,
+    @Req() req: any,
+  ) {
     try {
-      await this.authService.create(body);
-      return res.redirect('/');
+      const user = await this.authService.newLogin(createUserDto);
+
+      if (req.accepts('html')) {
+         
+        req.session.loggedin = true;
+         
+        req.session.username = user.username;
+         
+        req.session.balance = user.balance;
+         
+        req.session.file_history = user.file_history;
+         
+        req.session.account_no = user.account_no;
+
+        return res.redirect('/');
+      }
+
+      return res.json(this.authService.login(user));
     } catch (error) {
       // Em uma aplicação real, seria melhor redirecionar com uma mensagem de erro.
       const errorMessage = error instanceof Error ? error.message : 'Ocorreu um erro desconhecido.';
