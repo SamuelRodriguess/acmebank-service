@@ -1,62 +1,63 @@
-# Acme Bank Service
+# Bank Service
 
-A concise backend service built with NestJS for core banking operations.
+Este é um serviço de backend bancário desenvolvido com [NestJS](https://nestjs.com/).
 
-## Features
-
-- **User Authentication:** Secure login and session management.
-- **Money Transfers:** Atomic transactions for safe transfers.
-- **Public Forum:** Authenticated user discussions.
-- **Transaction Ledger:** Viewable history with account filtering.
-- **Secure File Access:** Validated and sanitized downloads.
-
-## Tech Stack
+## 🚀 Tecnologias
 
 - **Framework:** NestJS
-- **Database:** SQLite (with TypeORM)
-- **Security:** Passport (JWT/Session), Class Validator, Helmet, Rate Limiting.
+- **Banco de Dados:** SQLite (via TypeORM)
+- **Cache/Sessão:** Redis
+- **Autenticação:** Passport (Local & JWT)
+- **Segurança:** Helmet, CSRF, Rate Limiting
+- **Template Engine:** EJS
 
-## Getting Started
+## 🛠️ Pré-requisitos
 
-### Prerequisites
-- Node.js (v20 or higher)
-- Yarn or NPM
+- Node.js (>= 20)
+- Redis Server (rodando localmente ou via Docker)
+- Yarn ou NPM
 
-### Installation & Execution
+## 🏁 Como começar
+
+1. **Instale as dependências:**
+   ```bash
+   yarn install
+   # ou
+   npm install
+   ```
+
+2. **Configure as variáveis de ambiente:**
+   Crie um arquivo `.env` na raiz do projeto (baseado no `.env.example`, se disponível).
+
+3. **Inicie a aplicação:**
+   ```bash
+   # Desenvolvimento
+   yarn start
+
+   # Modo Watch (recomendado para dev)
+   yarn start:watch
+
+   # Produção
+   yarn build
+   yarn start:prod
+   ```
+
+## 🧪 Testes
+
 ```bash
-# Clone the project
-git clone https://github.com/SamuelRodriguess/nestjs-acme-bank-service
-
-# Install dependencies
-yarn install
-
-# Start development server
-yarn start
-```
-Access the service at `http://localhost:3000`.
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `POST` | `/auth/login` | Authenticate user |
-| `POST` | `/transfer` | Transfer funds |
-| `GET` | `/public_ledger` | View transaction history |
-| `POST` | `/public_forum` | Post forum comments |
-| `POST` | `/download` | Secure file download |
-
-## Development
-
-```bash
-# Linting
-yarn lint
-
-# Unit tests
+# Testes unitários
 yarn test
 
-# E2E tests
+# Testes E2E
 yarn test:e2e
+
+# Cobertura de testes
+yarn test:cov
 ```
 
-## License
-UNLICENSED
+## 📂 Estrutura do Projeto
+
+- `src/modules/auth`: Gerenciamento de autenticação e guards.
+- `src/modules/user`: Operações relacionadas a usuários.
+- `src/common`: Middlewares de segurança (CSRF, Rate Limiter).
+- `html/`: Templates front-end (login, etc).

@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { IPayload, UserWithoutPassword } from './typings/auth';
-import { CreateUserDto } from '../user/dto/create-user.dto';
+import { CreateAuthDto } from './dto/create-auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -29,8 +29,8 @@ export class AuthService {
     return result;
   }
 
-  async newLogin(createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async newLogin(createAuthDto: CreateAuthDto) {
+    return this.userService.create(createAuthDto);
   }
 
   login(user: IPayload) {

@@ -15,7 +15,7 @@ import {
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import type { Response } from 'express';
-import { CreateUserDto } from '../user/dto/create-user.dto';
+import { CreateAuthDto } from './dto/create-auth.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -44,14 +44,13 @@ export class AuthController {
   }
 
   @Post('newlogin')
-   
   async newLogin(
-    @Body() createUserDto: CreateUserDto,
+    @Body() createAuthDto: CreateAuthDto,
     @Res() res: Response,
     @Req() req: any,
   ) {
     try {
-      const user = await this.authService.newLogin(createUserDto);
+      const user = await this.authService.newLogin(createAuthDto);
 
       if (req.accepts('html')) {
          

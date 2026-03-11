@@ -14,6 +14,11 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const existingUser = await this.findByUsername(createUserDto.username);
+    if (existingUser) {
+      throw new Error('Usuário já existe.');
+    }
+
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
     const balanceInitial = 0;
@@ -21,7 +26,7 @@ export class UserService {
       username: createUserDto.username,
       password: hashedPassword,
       balance: balanceInitial,
-      file_history: 'seu historico',
+      file_history: '',
       account_no: generateAccountNo(),
     });
 
