@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -15,7 +16,7 @@ import {
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import type { Response } from 'express';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -45,12 +46,12 @@ export class AuthController {
 
   @Post('newlogin')
   async newLogin(
-    @Body() createAuthDto: CreateAuthDto,
+    @Body() createUserDto: CreateUserDto,
     @Res() res: Response,
     @Req() req: any,
   ) {
     try {
-      const user = await this.authService.newLogin(createAuthDto);
+      const user = await this.authService.newLogin(createUserDto);
 
       if (req.accepts('html')) {
          

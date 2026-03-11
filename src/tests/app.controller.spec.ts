@@ -1,1 +1,5 @@
-describe('AppController', () => {});
+describe('AppController', () => {
+  it('should be true', () => {
+    expect(true).toBe(true);
+  });
+});
